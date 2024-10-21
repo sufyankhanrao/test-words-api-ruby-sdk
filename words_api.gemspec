@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'test-words-api-client-sdk'
-  s.version = '3.0.3'
+  s.version = '3.0.4'
   s.summary = 'Test Words API lets you retrieve information about English words, including definitions, synonyms, rhymes, pronunciation, syllables, and frequency of usage.'
   s.description = 'Words API lets you retrieve information about English words, including definitions, synonyms, rhymes, pronunciation, syllables, and frequency of usage. It also can tell you about relationships between words, for instance that “math” has categories like “algebra” and “geometry”, or that a “finger” is part of a “hand”.'
   s.authors = ['Sufyan']
