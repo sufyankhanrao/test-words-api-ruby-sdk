@@ -10,16 +10,16 @@ Words API lets you retrieve information about English words, including definitio
 Install the gem from the command line:
 
 ```ruby
-gem install test-words-api-client-sdk -v 5.0.0
+gem install test-words-api-client-sdk -v 5.0.1
 ```
 
 Or add the gem to your Gemfile and run `bundle`:
 
 ```ruby
-gem 'test-words-api-client-sdk', '5.0.0'
+gem 'test-words-api-client-sdk', '5.0.1'
 ```
 
-For additional gem details, see the [RubyGems page for the test-words-api-client-sdk gem](https://rubygems.org/gems/test-words-api-client-sdk/versions/5.0.0).
+For additional gem details, see the [RubyGems page for the test-words-api-client-sdk gem](https://rubygems.org/gems/test-words-api-client-sdk/versions/5.0.1).
 
 ## Test the SDK
 
@@ -31,7 +31,7 @@ rake
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.0/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
@@ -46,7 +46,8 @@ The following parameters are configurable for the API Client:
 | `retry_statuses` | `Array` | A list of HTTP statuses to retry. <br> **Default: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524]** |
 | `retry_methods` | `Array` | A list of HTTP methods to retry. <br> **Default: %i[get put]** |
 | `http_callback` | `HttpCallBack` | The Http CallBack allows defining callables for pre and post API calls. |
-| `custom_header_authentication_credentials` | [`CustomHeaderAuthenticationCredentials`](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.0/doc/auth/custom-header-signature.md) | The credential object for Custom Header Signature |
+| `logging_configuration` | [`LoggingConfiguration`](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/logging-configuration.md) | The SDK logging configuration for API calls |
+| `custom_header_authentication_credentials` | [`CustomHeaderAuthenticationCredentials`](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/auth/custom-header-signature.md) | The credential object for Custom Header Signature |
 
 The API client can be initialized as follows:
 
@@ -54,6 +55,15 @@ The API client can be initialized as follows:
 client = WordsApi::Client.new(
   custom_header_authentication_credentials: CustomHeaderAuthenticationCredentials.new(
     x_rapid_api_key: 'X-RapidAPI-Key'
+  ),
+  logging_configuration: LoggingConfiguration.new(
+    log_level: Logger::INFO,
+    request_logging_config: RequestLoggingConfiguration.new(
+      log_body: true
+    ),
+    response_logging_config: ResponseLoggingConfiguration.new(
+      log_headers: true
+    )
   )
 )
 ```
@@ -62,15 +72,19 @@ client = WordsApi::Client.new(
 
 This API uses the following authentication schemes.
 
-* [`RapidAPI-Key (Custom Header Signature)`](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.0/doc/auth/custom-header-signature.md)
+* [`RapidAPI-Key (Custom Header Signature)`](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/auth/custom-header-signature.md)
 
 ## List of APIs
 
-* [AP Is](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.0/doc/controllers/ap-is.md)
+* [AP Is](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/controllers/ap-is.md)
 
 ## Classes Documentation
 
-* [Utility Classes](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.0/doc/utility-classes.md)
-* [HttpResponse](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.0/doc/http-response.md)
-* [HttpRequest](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.0/doc/http-request.md)
+* [Utility Classes](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/utility-classes.md)
+* [HttpResponse](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/http-response.md)
+* [HttpRequest](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/http-request.md)
+* [LoggingConfiguration](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/logging-configuration.md)
+* [RequestLoggingConfiguration](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/request-logging-configuration.md)
+* [ResponseLoggingConfiguration](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/response-logging-configuration.md)
+* [Abstract Logger](https://www.github.com/sufyankhanrao/test-words-api-ruby-sdk/tree/5.0.1/doc/abstract-logger.md)
 

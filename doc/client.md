@@ -14,6 +14,7 @@ The following parameters are configurable for the API Client:
 | `retry_statuses` | `Array` | A list of HTTP statuses to retry. <br> **Default: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524]** |
 | `retry_methods` | `Array` | A list of HTTP methods to retry. <br> **Default: %i[get put]** |
 | `http_callback` | `HttpCallBack` | The Http CallBack allows defining callables for pre and post API calls. |
+| `logging_configuration` | [`LoggingConfiguration`](logging-configuration.md) | The SDK logging configuration for API calls |
 | `custom_header_authentication_credentials` | [`CustomHeaderAuthenticationCredentials`](auth/custom-header-signature.md) | The credential object for Custom Header Signature |
 
 The API client can be initialized as follows:
@@ -22,6 +23,15 @@ The API client can be initialized as follows:
 client = WordsApi::Client.new(
   custom_header_authentication_credentials: CustomHeaderAuthenticationCredentials.new(
     x_rapid_api_key: 'X-RapidAPI-Key'
+  ),
+  logging_configuration: LoggingConfiguration.new(
+    log_level: Logger::INFO,
+    request_logging_config: RequestLoggingConfiguration.new(
+      log_body: true
+    ),
+    response_logging_config: ResponseLoggingConfiguration.new(
+      log_headers: true
+    )
   )
 )
 ```

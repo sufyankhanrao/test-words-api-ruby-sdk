@@ -20,8 +20,9 @@ module WordsApi
       max_retries: 0, retry_interval: 1, backoff_factor: 2,
       retry_statuses: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
       retry_methods: %i[get put], http_callback: nil,
-      environment: Environment::PRODUCTION, x_rapid_api_key: nil,
-      custom_header_authentication_credentials: nil, config: nil
+      logging_configuration: nil, environment: Environment::PRODUCTION,
+      x_rapid_api_key: nil, custom_header_authentication_credentials: nil,
+      config: nil
     )
       @config = if config.nil?
                   Configuration.new(
@@ -30,6 +31,7 @@ module WordsApi
                     backoff_factor: backoff_factor,
                     retry_statuses: retry_statuses,
                     retry_methods: retry_methods, http_callback: http_callback,
+                    logging_configuration: logging_configuration,
                     environment: environment, x_rapid_api_key: x_rapid_api_key,
                     custom_header_authentication_credentials: custom_header_authentication_credentials
                   )

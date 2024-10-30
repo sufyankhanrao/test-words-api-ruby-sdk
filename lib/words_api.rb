@@ -24,6 +24,8 @@ require_relative 'words_api/http/http_request'
 require_relative 'words_api/http/http_response'
 
 # Logger
+require_relative 'words_api/logging/configuration/api_logging_configuration'
+require_relative 'words_api/logging/sdk_logger'
 require_relative 'words_api/http/auth/custom_header_authentication'
 
 # Models

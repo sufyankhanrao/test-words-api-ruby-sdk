@@ -37,14 +37,15 @@ module WordsApi
       max_retries: 0, retry_interval: 1, backoff_factor: 2,
       retry_statuses: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
       retry_methods: %i[get put], http_callback: nil,
-      environment: Environment::PRODUCTION, x_rapid_api_key: nil,
-      custom_header_authentication_credentials: nil
+      logging_configuration: nil, environment: Environment::PRODUCTION,
+      x_rapid_api_key: nil, custom_header_authentication_credentials: nil
     )
 
       super connection: connection, adapter: adapter, timeout: timeout,
             max_retries: max_retries, retry_interval: retry_interval,
             backoff_factor: backoff_factor, retry_statuses: retry_statuses,
-            retry_methods: retry_methods, http_callback: http_callback
+            retry_methods: retry_methods, http_callback: http_callback,
+            logging_configuration: logging_configuration
 
       # Current API environment
       @environment = String(environment)
@@ -64,7 +65,8 @@ module WordsApi
     def clone_with(connection: nil, adapter: nil, timeout: nil,
                    max_retries: nil, retry_interval: nil, backoff_factor: nil,
                    retry_statuses: nil, retry_methods: nil, http_callback: nil,
-                   environment: nil, x_rapid_api_key: nil,
+                   logging_configuration: nil, environment: nil,
+                   x_rapid_api_key: nil,
                    custom_header_authentication_credentials: nil)
       connection ||= self.connection
       adapter ||= self.adapter
@@ -75,6 +77,7 @@ module WordsApi
       retry_statuses ||= self.retry_statuses
       retry_methods ||= self.retry_methods
       http_callback ||= self.http_callback
+      logging_configuration ||= self.logging_configuration
       environment ||= self.environment
       custom_header_authentication_credentials = create_auth_credentials_object(
         x_rapid_api_key,
@@ -86,7 +89,7 @@ module WordsApi
         max_retries: max_retries, retry_interval: retry_interval,
         backoff_factor: backoff_factor, retry_statuses: retry_statuses,
         retry_methods: retry_methods, http_callback: http_callback,
-        environment: environment,
+        logging_configuration: logging_configuration, environment: environment,
         custom_header_authentication_credentials: custom_header_authentication_credentials
       )
     end
